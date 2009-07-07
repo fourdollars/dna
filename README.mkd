@@ -1,0 +1,10 @@
+# DNA Chinese Input Method
+* Creator
+ * 程至淵 upilot[AT]seed.net.tw
+ * <http://www.upilot.idv.tw/chinese.htm>
+* Programmer
+ * Shih-Yuan Lee (FourDollars) fourdollars[AT]gmail.com
+ * <http://fd.idv.tw>
+* Usage
+    * ./dna.py 63660635 17235 2227575
+    - This will show full name of the creator in UTF-8.
