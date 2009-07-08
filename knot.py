@@ -23,24 +23,38 @@ import sys
 
 class knot:
     def __init__(self):
+        option = re.compile('^%(\w+)\s+(\S+)$')
         pattern = re.compile('^([0-9]+) (.*)$')
         file = codecs.open('dna.cin', 'r', 'utf-8')
-        self.knot = dict()
+        self.numdef = dict()
+        self.chardef = dict()
+        mode = 0
         for line in file.readlines():
-            result = pattern.match(line)
-            if result:
-                if result.group(1) not in self.knot:
-                    chars = list()
-                    chars.append(result.group(2))
-                    self.knot[result.group(1)] = chars
+            if mode == 0:
+                result = option.match(line)
+                if result and result.group(1) == 'chardef' and result.group(2) == 'begin':
+                    mode = 1
+            elif mode == 1:
+                result = pattern.match(line)
+                if result:
+                    if result.group(1) not in self.numdef:
+                        chars = list()
+                        chars.append(result.group(2))
+                        self.numdef[result.group(1)] = chars
+                    else:
+                        chars = self.numdef[result.group(1)]
+                        chars.append(result.group(2))
+                    self.chardef[result.group(2)] = result.group(1)
                 else:
-                    chars = self.knot[result.group(1)]
-                    chars.append(result.group(2))
-                self.knot[result.group(2)] = result.group(1)
+                    result = option.match(line)
+                    if result and result.group(1) == 'chardef' and result.group(2) == 'end':
+                        mode = 2
         file.close()
     def find(self, str):
-        if str in self.knot:
-            return self.knot[str]
+        if str in self.numdef:
+            return self.numdef[str]
+        elif str in self.chardef:
+            return self.chardef[str]
         else:
             return None
 
