@@ -44,7 +44,13 @@ class knot:
                     else:
                         chars = self.numdef[result.group(1)]
                         chars.append(result.group(2))
-                    self.chardef[result.group(2)] = result.group(1)
+                    if result.group(2) not in self.chardef:
+                        chars = list()
+                        chars.append(result.group(1))
+                        self.chardef[result.group(2)] = chars
+                    else:
+                        chars = self.chardef[result.group(2)]
+                        chars.append(result.group(1))
                 else:
                     result = option.match(line)
                     if result and result.group(1) == 'chardef' and result.group(2) == 'end':
@@ -73,4 +79,9 @@ if __name__ == "__main__":
                     print str, 'not found.'
             else:
                 for char in str:
-                    print char, obj.find(char)
+                    numbers = obj.find(char)
+                    if numbers:
+                        output = char
+                        for num in numbers:
+                            output = output + ' ' + num
+                        print output
