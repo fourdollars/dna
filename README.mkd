@@ -10,3 +10,6 @@
     * ./knot.py 程至淵
     * ./knot.py 63660635 17235 2227575
         - This will show full name of the creator in UTF-8.
+* SCIM
+    * scim-make-table knot.cin -b -o knot.bin
+    * sudo cp -v knot.bin /usr/share/scim/tables/
