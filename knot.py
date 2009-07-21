@@ -74,6 +74,7 @@ if __name__ == "__main__":
                 if list:
                     for char in list:
                         str = str + ' ' + char
+                    str = str.encode('utf-8')
                     print str
                 else:
                     print str, 'not found.'
