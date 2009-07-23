@@ -82,7 +82,7 @@ MAX_KEY_LENGTH = 8
 VALID_INPUT_CHARS = 0123456789
 
 ### Possible chars that ends a key
-KEY_END_CHARS = 3467
+KEY_END_CHARS =
 
 ### Single wildcard char, can have multiple chars.
 ### SINGLE_WILDCARD_CHAR = ?
